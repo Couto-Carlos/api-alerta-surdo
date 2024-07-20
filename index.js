@@ -27,11 +27,17 @@ io.on('connection', socket => {
     console.log(socket.data.username);
   });
 
+  socket.on('set_alertid', alertid => {
+    socket.data.alertid = alertid;
+    console.log(socket.data.alertid);
+  });
+
   socket.on('message', ({ text, location }) => {
     io.emit('receive_message', {
       text,
       authorId: socket.id,
       author: socket.data.username,
+      alertid,
       location
     });
   });
