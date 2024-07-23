@@ -37,7 +37,7 @@ io.on('connection', socket => {
       text,
       authorId: socket.id,
       author: socket.data.username,
-      alertid,
+      alertId: socket.data.alertId,
       location
     });
   });
