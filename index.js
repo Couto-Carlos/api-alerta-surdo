@@ -27,9 +27,9 @@ io.on('connection', socket => {
     console.log(socket.data.username);
   });
 
-  socket.on('set_alertid', alertid => {
-    socket.data.alertid = alertid;
-    console.log(socket.data.alertid);
+  socket.on('set_alertId', alertId => {
+    socket.data.alertId = alertId;
+    console.log('set alertid' + socket.data.alertId);
   });
 
   socket.on('message', ({ text, location }) => {
