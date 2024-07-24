@@ -32,13 +32,19 @@ io.on('connection', socket => {
   });
 
   socket.on('message', ({ text, location, alertId }) => {
-    io.emit('receive_message', {
+    const message = {
       text,
       authorId: socket.id,
       author: socket.data.username,
       location,
-      alertId: socket.data.alertId
-    });
+      alertId: socket.data.alertId,
+      status: 'waiting'
+    };
+    io.emit('receive_message', message);
+  });
+
+  socket.on('response_message', ({ messageId }) => {
+    io.emit('update_message', { messageId, status: 'Mantenha-se no local, os agentes estão indo' });
   });
 });
 
