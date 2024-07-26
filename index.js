@@ -22,11 +22,6 @@ io.on('connection', socket => {
     console.log('Usuário desconectado!', socket.id);
   });
 
-  socket.on('set_username', username => {
-    socket.data.username = username;
-    console.log(socket.data.username);
-  });
-
   socket.on('set_alertid', alertId => {
     socket.data.alertId = alertId;
   });
@@ -35,10 +30,8 @@ io.on('connection', socket => {
     const message = {
       text,
       authorId: socket.id,
-      author: socket.data.username,
       location,
       alertId: socket.data.alertId,
-      status: 'waiting'
     };
     io.emit('receive_message', message);
   });
