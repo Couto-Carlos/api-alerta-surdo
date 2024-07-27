@@ -36,9 +36,14 @@ io.on('connection', socket => {
     io.emit('receive_message', message);
   });
 
-  socket.on('response_message', ({ messageId }) => {
-    io.emit('update_message', { messageId, status: 'Mantenha-se no local, os agentes estão indo' });
+  socket.on('alert_response', ({ confirmation , authorId}) => {
+    const response = {
+      confirmation,
+      authorId
+    };
+    io.emit('receive_response', response);
   });
+
 });
 
 server.listen(PORT, () => console.log('Server running...'));
